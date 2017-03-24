@@ -18,6 +18,9 @@ app.use(express.static('public'));
 var mongoose = require('mongoose');
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/compete-contendify');
 
+//Require models
+var User = require("./models/user.js");
+
 //Jwt and cookies
 var jwt = require('express-jwt');
 var cookieParser = require('cookie-parser');

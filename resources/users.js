@@ -1,4 +1,5 @@
-
+var User = require('../models/user.js');
+var jwt = require('jsonwebtoken');
 module.exports = function(app) {
     //Signup View
     app.get('/signup', function(req, res){
@@ -6,8 +7,9 @@ module.exports = function(app) {
     });
 
     //Signup Create UserSchema
-    app.post('signup', function(req, res){
-        var user = new User();
+    app.post('/signup', function(req, res){
+        console.log("hi");
+        var user = new User(req.body);
         user.save(function(err){
             if (err){return res.status(300)};
             var token = jwt.sign({ _id: user._id}, 'shhhhhhared-secret');
