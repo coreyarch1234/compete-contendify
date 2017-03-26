@@ -9,7 +9,7 @@ var UserSchema = new Schema({
   , password        : { type: String, required: true }
   , first           : { type: String, required: true }
   , last            : { type: String, required: true }
-  // , grade           : { type: Number, required: false }
+  , grade           : { type: String, required: true }
 });
 
 UserSchema.pre('save', function(next){
