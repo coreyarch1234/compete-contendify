@@ -65,4 +65,31 @@ $(document).ready(function(){
         Cookies.remove('token');
         window.location.href = '/';
     })
+
+    //Create Competition
+    $('#new-competition').submit(function(e){
+        e.preventDefault();
+        var competition = $(this).serialize();
+        console.log('here we go');
+        $.ajax({
+           url: '/competitions',
+           data: competition,
+           fail: function() {
+              alert(error.message);
+           },
+           dataType: 'json',
+           success: function(data) {
+               $('#competitions').append(
+              "<li class='list-group-item'>" +
+                  "<h1>" + data.title + "</h1>" +
+                  "<h2>" + data.grade + "</h2>" +
+                  "<h1>" + data.questionCount + "</h1>" +
+              "</li>");
+              $('#new-competition')[0].reset();
+            window.location.href = "/competitions";
+           },
+           type: 'POST'
+        });
+    });
+
 });

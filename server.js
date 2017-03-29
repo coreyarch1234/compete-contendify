@@ -20,6 +20,8 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/compete-contend
 
 //Require models
 var User = require("./models/user.js");
+var Competition = require('./models/competition.js');
+
 
 //Jwt and cookies
 var jwt = require('express-jwt');
@@ -41,6 +43,7 @@ app.use(jwt({
 
 //Require all of user route methods
 require("./resources/users")(app);
+require("./resources/competitions")(app);
 
 //Home Route
 app.get('/', function(req, res){

@@ -10,6 +10,7 @@ var UserSchema = new Schema({
   , first           : { type: String, required: true }
   , last            : { type: String, required: true }
   , grade           : { type: String, required: true }
+  , competitions: [{ type: Schema.Types.ObjectId, ref: 'Competition' }]
 });
 
 UserSchema.pre('save', function(next){
