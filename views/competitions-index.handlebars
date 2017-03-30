@@ -1,0 +1,12 @@
+<div class="col-sm-12">
+    <p>List of competitions</p>
+    <ul class="list-group" id="competitions">
+      {{#each competitions}}
+        <li class='list-group-item'>
+            <h1>Title: {{this.title}}</h1>
+            <h2>Grade Level: {{this.grade}}</h2>
+            <h2>Number of Questions: {{this.questionCount}}</h2>
+        </li>
+      {{/each}}
+    </ul>
+</div>

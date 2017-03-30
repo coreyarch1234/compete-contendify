@@ -65,12 +65,11 @@ $(document).ready(function(){
         Cookies.remove('token');
         window.location.href = '/';
     })
-
     //Create Competition
     $('#new-competition').submit(function(e){
         e.preventDefault();
         var competition = $(this).serialize();
-        console.log('here we go');
+        console.log(competition);
         $.ajax({
            url: '/competitions',
            data: competition,

@@ -10,11 +10,8 @@ module.exports = function(app) {
     app.post('/competitions', function(req, res){
         User.findById(req.user._id).exec(function(err, user){
             var competition = new Competition(req.body);
+            console.log(competition)
             competition.user = user;
-            // user.competitions.push(competition);
-            // console.log(user.competitions)
-            // user.save();
-            // res.send(competition);
             competition.save(function (err) {
               if (err) { return res.status(400).send(err) }
               console.log('hellooo')
@@ -22,21 +19,13 @@ module.exports = function(app) {
               user.save();
               res.send(competition);
             });
-
-            // Competition.create(competition, function(err, competition){
-            //     if (err){ return res.status(300) };
-            //     console.log("hello ma");
-            //     user.competitions.push(competiton);
-            //     user.save(function (err) {
-            //     if (err){ return res.status(300) };
-            //     res.status(200).json(competition);
-            //     });
-            // });
         });
     });
 
+    //Index of competitions
     app.get('/competitions', function(req, res){
-        res.render('competitions');
+        Competition.find().exec(function(err, competitions){
+            res.render('competitions-index', {competitions: competitions});
+        });
     });
-
 };

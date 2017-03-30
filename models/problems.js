@@ -2,10 +2,10 @@ var mongoose = require('mongoose'),
       bcrypt = require("bcryptjs"),
       Schema = mongoose.Schema;
 
-var CompetitionSchema = new Schema({
+var ProblemSchema = new Schema({
     createdAt       : { type: Date }
   , updatedAt       : { type: Date }
-  , title           : { type: String, unique: true, required: true }
+  , description     : { type: String, required: true }
   , grade           : { type: String, required: false }
   , topic           : {type: String, required: true}
   , questionCount   : { type: Number, required: true },
@@ -15,7 +15,7 @@ var CompetitionSchema = new Schema({
   }
 });
 
-CompetitionSchema.pre('save', function(next){
+ProblemSchema.pre('save', function(next){
     // SET createdAt AND updatedAt
     var now = new Date();
     this.updatedAt = now;
@@ -25,4 +25,4 @@ CompetitionSchema.pre('save', function(next){
     next();
   });
 
-  module.exports = mongoose.model('Competition', CompetitionSchema);
+  module.exports = mongoose.model('Problem', ProblemSchema);
